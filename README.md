@@ -1,4 +1,4 @@
-[![Easynvestd](https://www.easynvest.com.br/favicon.ico)](https://www.easynvest.com.br/) 
+﻿[![Easynvestd](https://www.easynvest.com.br/favicon.ico)](https://www.easynvest.com.br/) 
 
 # Teste de Backend Easynvest 
 
@@ -44,3 +44,13 @@ Para enviar a sua solução para esses teste é só seguir o [fluxo de fork do g
 ### .Net
 
 O projeto foi criado utilizando o [Visual Studio 2017](https://www.visualstudio.com/pt-br/downloads/) e você pode utilizar o Community para criar a sua solução.
+
+
+## Sugestões gerais para melhorias:
+
+* Renomear as classes e namespaces
+* Aplicar conceitos SOLID
+* escrever o código em inglês (harmoniza o nome de variáveis com os comandos e operadores da linguagem, prepara para uma possível internacionalização, evita mistura de inglês com português)
+* Usar o padrão //arrange, act and Assert para os unit tests
+* Usar uma ferramenta para verificar a cobertura dos testes
+* Criar testes de integração

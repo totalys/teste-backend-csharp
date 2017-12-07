@@ -8,6 +8,7 @@ using Infrastructure.TorreHanoi.ImagemHelper;
 using Infrastructure.TorreHanoi.Log;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using FluentAssertions;
 
 namespace Tests.TorreHanoi.Application
 {
@@ -15,6 +16,9 @@ namespace Tests.TorreHanoi.Application
     public class TorreHanoiApplicationServiceUnit
     {
         private const string CategoriaTeste = "Application/Service/TorreHanoi";
+
+        private const int width = 5;
+        private const int height = 5;
 
         private ITorreHanoiApplicationService _service;
 
@@ -25,6 +29,7 @@ namespace Tests.TorreHanoi.Application
             mockLogger.Setup(s => s.Logar(It.IsAny<string>(), It.IsAny<TipoLog>()));
 
             var mockDesignerService = new Mock<IDesignerService>();
+            mockDesignerService.Setup(s => s.Desenhar()).Returns(() => new System.Drawing.Bitmap(width, height));
 
             var mockTorreHanoiDomainService = new Mock<ITorreHanoiDomainService>();
             mockTorreHanoiDomainService.Setup(s => s.Criar(It.IsAny<int>())).Returns(Guid.NewGuid);
@@ -79,7 +84,18 @@ namespace Tests.TorreHanoi.Application
         [TestCategory(CategoriaTeste)]
         public void ObterImagemProcessoPor_Deve_Retornar_Imagem()
         {
-            Assert.Fail();
+            //Arrange
+            var createdGuid = Guid.NewGuid();
+
+            //Act
+            var response = _service.ObterImagemProcessoPor(createdGuid.ToString());
+
+            //Assert
+            response.Should().NotBeNull();
+            response.IsValid.Should().BeTrue();
+            response.Imagem.Should().NotBeNull();
+            response.MensagensDeErro.Count.Should().Be(0);
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
     }
 }
